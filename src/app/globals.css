@@ -7,8 +7,6 @@
   --color-accent-foreground: #ffffff;
   --color-card: #111827;
   --color-card-foreground: #f9fafb;
-  --color-popover: #070A10;
-  --color-popover-foreground: #f9fafb;
   --color-primary: #6366f1;
   --color-primary-foreground: #ffffff;
   --color-secondary: #1f2937;
@@ -20,7 +18,9 @@
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 }
 
-@source "../**/*.{js,ts,jsx,tsx,mdx}";
+/* Specific sourcing for Vercel deployment */
+@source "..";
+/* Scans src/app and src/components */
 
 @layer base {
   * {
@@ -52,7 +52,8 @@
   }
 
   .text-balance {
-    text-wrap: balance;
+    @apply text-pretty;
+    /* v4 alternative */
   }
 
   .glass {
