@@ -1,40 +1,26 @@
 @import "tailwindcss";
 
-:root {
-  --background: #070A10;
-  --foreground: #f9fafb;
-  --accent: #6366f1;
-  --accent-foreground: #ffffff;
-  --card: #111827;
-  --card-foreground: #f9fafb;
-  --popover: #070A10;
-  --popover-foreground: #f9fafb;
-  --primary: #6366f1;
-  --primary-foreground: #ffffff;
-  --secondary: #1f2937;
-  --secondary-foreground: #f9fafb;
-  --muted: #1f2937;
-  --muted-foreground: #9ca3af;
-  --border: #1f2937;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-border: var(--border);
+@theme {
+  --color-background: #070A10;
+  --color-foreground: #f9fafb;
+  --color-accent: #6366f1;
+  --color-accent-foreground: #ffffff;
+  --color-card: #111827;
+  --color-card-foreground: #f9fafb;
+  --color-popover: #070A10;
+  --color-popover-foreground: #f9fafb;
+  --color-primary: #6366f1;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #1f2937;
+  --color-secondary-foreground: #f9fafb;
+  --color-muted: #1f2937;
+  --color-muted-foreground: #9ca3af;
+  --color-border: #1f2937;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 }
+
+@source "../**/*.{js,ts,jsx,tsx,mdx}";
 
 @layer base {
   * {
@@ -62,6 +48,7 @@
     z-index: 50;
     opacity: 0.03;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
   }
 
   .text-balance {
