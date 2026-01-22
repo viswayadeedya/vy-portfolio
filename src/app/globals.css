@@ -1,26 +1,15 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
-  --color-background: #070A10;
-  --color-foreground: #f9fafb;
-  --color-accent: #6366f1;
-  --color-accent-foreground: #ffffff;
-  --color-card: #111827;
-  --color-card-foreground: #f9fafb;
-  --color-primary: #6366f1;
-  --color-primary-foreground: #ffffff;
-  --color-secondary: #1f2937;
-  --color-secondary-foreground: #f9fafb;
-  --color-muted: #1f2937;
-  --color-muted-foreground: #9ca3af;
-  --color-border: #1f2937;
-
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+:root {
+  --background: #070A10;
+  --foreground: #f9fafb;
+  --primary: #6366f1;
+  --secondary: #1f2937;
+  --card: #111827;
+  --border: #1f2937;
 }
-
-/* Specific sourcing for Vercel deployment */
-@source "..";
-/* Scans src/app and src/components */
 
 @layer base {
   * {
@@ -30,8 +19,8 @@
   body {
     @apply bg-background text-foreground font-sans selection:bg-primary/30 selection:text-primary-foreground;
     background-image:
-      radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--color-primary), transparent 85%), transparent 50%),
-      radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--color-primary), transparent 92%), transparent 40%);
+      radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.12), transparent 50%),
+      radial-gradient(circle at 100% 100%, rgba(99, 102, 241, 0.06), transparent 40%);
     background-attachment: fixed;
     min-height: 100vh;
   }
@@ -52,8 +41,7 @@
   }
 
   .text-balance {
-    @apply text-pretty;
-    /* v4 alternative */
+    text-wrap: balance;
   }
 
   .glass {
