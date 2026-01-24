@@ -9,8 +9,8 @@ export default function Contact() {
                 </h2>
 
                 <p className="text-xl text-muted-foreground mb-16 font-light leading-relaxed max-w-2xl mx-auto">
-                    Currently open to Senior Full-stack or Backend roles where ownership
-                    is encouraged and impact is measured.
+                    Open to new engineering challenges across the stack spanning Full-stack,
+                    Backend, and Frontend roles where technical ownership drives measurable impact.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-8">

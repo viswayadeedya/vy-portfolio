@@ -33,12 +33,12 @@ export default function ProofStrip({ view }: ProofStripProps) {
                                     </span>
 
                                     {/* Subtle reveal "how" */}
-                                    <div className="h-4 overflow-hidden">
-                                        <p className="text-[10px] text-muted-foreground font-medium italic transition-all duration-500 translate-y-4 group-hover:translate-y-0">
-                                            {metric.technicalAction}
-                                        </p>
-                                        <p className="text-[10px] text-muted-foreground/40 font-medium uppercase tracking-tighter transition-all duration-500 group-hover:-translate-y-4">
+                                    <div className="relative h-5 overflow-hidden">
+                                        <p className="absolute inset-0 text-[10px] text-muted-foreground/40 font-medium uppercase tracking-tighter transition-all duration-500 group-hover:opacity-0 group-hover:-translate-y-full">
                                             How?
+                                        </p>
+                                        <p className="absolute inset-0 text-[10px] text-muted-foreground font-medium italic transition-all duration-500 opacity-0 translate-y-full group-hover:opacity-100 group-hover:translate-y-0">
+                                            {metric.technicalAction}
                                         </p>
                                     </div>
                                 </div>

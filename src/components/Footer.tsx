@@ -7,7 +7,7 @@ export default function Footer() {
                         Viswa Yadeedya
                     </p>
                     <p className="text-xs text-muted-foreground font-light">
-                        Senior Full-stack Engineer • Impact-Driven Systems
+                        Full-stack Engineer • Impact-Driven Systems
                     </p>
                 </div>
 
