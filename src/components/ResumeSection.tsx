@@ -27,7 +27,7 @@ export default function ResumeSection() {
                         Download Resume
                     </a>
                     <p className="text-[10px] text-white/30 uppercase tracking-[0.3em] font-bold">
-                        Updated Jan 2024
+                        Updated Jan 2026
                     </p>
                 </div>
             </div>
