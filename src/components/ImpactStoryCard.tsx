@@ -9,136 +9,137 @@ interface ImpactStoryCardProps {
 }
 
 export default function ImpactStoryCard({ story, view }: ImpactStoryCardProps) {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    const perspective = story.perspectives[view];
+    const summary = story.oneLiner[view];
 
     return (
-        <>
+        <div
+            className={`group border-b border-white/10 transition-all duration-500 overflow-hidden ${isExpanded ? 'bg-card/30' : 'hover:bg-card/10'
+                }`}
+        >
+            {/* Header / Clickable Area */}
             <div
-                className="group relative bg-card/40 border border-white/5 rounded-2xl p-8 hover:bg-card/60 transition-all duration-300 flex flex-col h-full cursor-pointer"
-                onClick={() => setIsOpen(true)}
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="px-8 py-10 cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-8"
             >
-                <div className="mb-6">
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
-                        {story.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                        {story.summary}
+                <div className="flex-grow max-w-2xl">
+                    <div className="flex items-center gap-3 mb-4">
+                        <span className="text-[10px] font-bold text-accent uppercase tracking-[0.2em] bg-accent/10 px-2 py-0.5 rounded">
+                            {perspective.roleTitle}
+                        </span>
+                        <span className="h-[1px] w-8 bg-white/10" />
+                        <h3 className="text-xl font-bold text-white tracking-tight">
+                            {story.title}
+                        </h3>
+                    </div>
+
+                    <p className="text-lg text-white/90 font-light leading-relaxed">
+                        {summary}
                     </p>
                 </div>
 
-                <div className="space-y-3 mb-8 flex-grow">
-                    {story.outcomes.map((outcome, idx) => (
-                        <div key={idx} className="flex items-start gap-2">
-                            <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
-                            <span className="text-sm font-medium text-white/90">{outcome}</span>
-                        </div>
-                    ))}
-                </div>
+                <div className="flex items-center gap-6">
+                    <div className="hidden md:flex flex-col items-end gap-1">
+                        {perspective.focusMetrics.map((metric, idx) => (
+                            <span key={idx} className="text-xs font-bold text-accent italic">
+                                {metric}
+                            </span>
+                        ))}
+                    </div>
 
-                <button
-                    className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
-                >
-                    View details
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                </button>
+                    <div className="h-10 w-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-accent group-hover:bg-accent/5 transition-all">
+                        <svg
+                            className={`w-4 h-4 text-white transition-transform duration-500 ${isExpanded ? 'rotate-45' : ''}`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                        </svg>
+                    </div>
+                </div>
             </div>
 
-            {/* Basic Modal */}
-            {isOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
-                    <div
-                        className="absolute inset-0 bg-black/80 backdrop-blur-sm"
-                        onClick={() => setIsOpen(false)}
-                    />
-                    <div className="relative glass w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl p-8 md:p-12 animate-in fade-in zoom-in duration-300">
-                        <button
-                            onClick={() => setIsOpen(false)}
-                            className="absolute top-6 right-6 text-muted-foreground hover:text-white transition-colors"
-                        >
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
+            {/* Expanded Content */}
+            <div
+                className={`transition-all duration-700 ease-in-out ${isExpanded ? 'max-h-[1500px] opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+            >
+                <div className="px-8 pb-16 grid grid-cols-1 md:grid-cols-12 gap-12 border-t border-white/5 pt-12">
+                    {/* Left Column: Context & Reframing */}
+                    <div className="md:col-span-4 space-y-10">
+                        <div>
+                            <h4 className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] mb-4">
+                                The Thinking
+                            </h4>
+                            <p className="text-sm text-accent font-medium italic leading-relaxed">
+                                "{perspective.reframe}"
+                            </p>
+                        </div>
 
-                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">{story.title}</h2>
-                        <p className="text-muted-foreground mb-8">{story.summary}</p>
+                        <div>
+                            <h4 className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] mb-4">
+                                Problem
+                            </h4>
+                            <p className="text-sm text-muted-foreground leading-relaxed">
+                                {story.problem}
+                            </p>
+                        </div>
 
-                        <div className="space-y-8">
-                            {/* Conditional Rendering based on RoleView */}
-                            {(view === 'fullstack' || view === 'backend') && (
-                                <div className={`${view === 'backend' ? 'order-first' : ''}`}>
-                                    <h4 className="text-xs font-bold text-primary uppercase tracking-widest mb-4">Backend Ownership</h4>
-                                    <ul className="space-y-4">
-                                        {story.backendOwnership.map((item, idx) => (
-                                            <li key={idx} className="flex items-start gap-3 text-sm text-white/80 leading-relaxed">
-                                                <span className="text-primary font-bold mt-[-2px]">•</span>
-                                                {item}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
+                        <div>
+                            <h4 className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] mb-4">
+                                Constraints
+                            </h4>
+                            <p className="text-sm text-muted-foreground leading-relaxed">
+                                {story.constraints}
+                            </p>
+                        </div>
+                    </div>
 
-                            {(view === 'fullstack' || view === 'frontend') && (
-                                <div className={`${view === 'frontend' ? 'order-first' : ''}`}>
-                                    <h4 className="text-xs font-bold text-primary uppercase tracking-widest mb-4">Frontend Ownership</h4>
-                                    <ul className="space-y-4">
-                                        {story.frontendOwnership.map((item, idx) => (
-                                            <li key={idx} className="flex items-start gap-3 text-sm text-white/80 leading-relaxed">
-                                                <span className="text-primary font-bold mt-[-2px]">•</span>
-                                                {item}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
+                    {/* Right Column: Execution & Logic */}
+                    <div className="md:col-span-8 space-y-10">
+                        <div>
+                            <h4 className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] mb-6">
+                                Technical Decisions
+                            </h4>
+                            <ul className="space-y-6">
+                                {perspective.decisions.map((decision, idx) => (
+                                    <li key={idx} className="flex gap-4 group/item">
+                                        <span className="text-accent font-bold mt-[-2px] tracking-tighter shrink-0 opacity-40 group-hover/item:opacity-100 transition-opacity">
+                                            0{idx + 1}
+                                        </span>
+                                        <p className="text-base text-white/80 font-light leading-relaxed group-hover/item:text-white transition-colors">
+                                            {decision}
+                                        </p>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
 
-                            {/* If one is collapsed, show a way to see it? User said "deemphasized or collapsed". 
-                  Let's show it but with a "Show more" or just a smaller title if deemphasized. 
-                  Actually, the prompt says "frontend ownership collapsed or deemphasized" in Backend view.
-                  Let's make it a toggle or just a faded section. 
-              */}
-                            {view === 'backend' && (
-                                <details className="group">
-                                    <summary className="text-xs font-bold text-muted-foreground uppercase tracking-widest cursor-pointer hover:text-white transition-colors list-none flex items-center gap-2">
-                                        <svg className="w-3 h-3 group-open:rotate-90 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
-                                        </svg>
-                                        Frontend Ownership (Collapsed)
-                                    </summary>
-                                    <ul className="mt-4 space-y-4 border-l border-white/5 pl-4 ml-1.5">
-                                        {story.frontendOwnership.map((item, idx) => (
-                                            <li key={idx} className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed">
-                                                {item}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </details>
-                            )}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-8 border-t border-white/5">
+                            <div>
+                                <h4 className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] mb-4">
+                                    Trade-offs
+                                </h4>
+                                <p className="text-sm text-muted-foreground leading-relaxed italic">
+                                    {story.tradeOffs}
+                                </p>
+                            </div>
 
-                            {view === 'frontend' && (
-                                <details className="group">
-                                    <summary className="text-xs font-bold text-muted-foreground uppercase tracking-widest cursor-pointer hover:text-white transition-colors list-none flex items-center gap-2">
-                                        <svg className="w-3 h-3 group-open:rotate-90 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
-                                        </svg>
-                                        Backend Ownership (Collapsed)
-                                    </summary>
-                                    <ul className="mt-4 space-y-4 border-l border-white/5 pl-4 ml-1.5">
-                                        {story.backendOwnership.map((item, idx) => (
-                                            <li key={idx} className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed">
-                                                {item}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </details>
-                            )}
+                            <div>
+                                <h4 className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] mb-4">
+                                    Outcome
+                                </h4>
+                                <p className="text-xl font-bold text-white tracking-tight leading-snug">
+                                    {story.result}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            )}
-        </>
+            </div>
+        </div>
     );
 }

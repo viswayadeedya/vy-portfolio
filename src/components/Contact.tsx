@@ -2,30 +2,31 @@ import { contactInfo } from '@/lib/content';
 
 export default function Contact() {
     return (
-        <section id="contact" className="section-container border-t border-white/5 bg-gradient-to-b from-transparent to-primary/5">
-            <div className="max-w-3xl mx-auto text-center">
-                <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">
-                    Let&apos;s build something <span className="text-primary italic">impactful.</span>
+        <section id="contact" className="section-container border-t border-white/5 bg-gradient-to-b from-transparent to-accent/5">
+            <div className="max-w-4xl mx-auto text-center py-20">
+                <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tighter mb-10 leading-tight">
+                    Let&apos;s build something <br /> <span className="text-accent italic font-medium underline underline-offset-8 decoration-accent/20">measurable.</span>
                 </h2>
 
-                <p className="text-lg text-muted-foreground mb-12 leading-relaxed">
-                    I&apos;m currently open to full-stack, backend, or frontend roles where I can
-                    take ownership and deliver measurable results.
+                <p className="text-xl text-muted-foreground mb-16 font-light leading-relaxed max-w-2xl mx-auto">
+                    Currently open to Senior Full-stack or Backend roles where ownership
+                    is encouraged and impact is measured.
                 </p>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
                     <a
                         href={`mailto:${contactInfo.email}`}
-                        className="w-full sm:w-auto px-10 py-4 rounded-xl bg-primary text-white font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
+                        className="w-full sm:w-auto px-12 py-5 rounded-2xl bg-accent text-white font-bold hover:bg-accent/90 transition-all shadow-xl shadow-accent/20 active:scale-95"
                     >
                         Email Me
                     </a>
-                    <div className="flex items-center gap-6">
+
+                    <div className="flex items-center gap-4">
                         <a
                             href={contactInfo.linkedin}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-3 rounded-full bg-secondary text-white hover:bg-secondary/80 transition-colors border border-white/5"
+                            className="p-4 rounded-xl bg-secondary/50 text-white hover:bg-secondary transition-all border border-white/5"
                             title="LinkedIn"
                         >
                             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -36,7 +37,7 @@ export default function Contact() {
                             href={contactInfo.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-3 rounded-full bg-secondary text-white hover:bg-secondary/80 transition-colors border border-white/5"
+                            className="p-4 rounded-xl bg-secondary/50 text-white hover:bg-secondary transition-all border border-white/5"
                             title="GitHub"
                         >
                             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">

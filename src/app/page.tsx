@@ -18,7 +18,7 @@ export default function Home() {
     <main className="min-h-screen">
       <Navbar />
       <Hero view={view} setView={setView} />
-      <ProofStrip />
+      <ProofStrip view={view} />
       <ImpactSection view={view} />
       <HowIWork />
       <ResumeSection />

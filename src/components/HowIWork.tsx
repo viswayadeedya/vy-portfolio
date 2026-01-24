@@ -2,40 +2,44 @@ import { howIWork } from '@/lib/content';
 
 export default function HowIWork() {
     return (
-        <section id="work" className="section-container border-t border-white/5">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                <div>
-                    <h2 className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">
-                        Philosophy
-                    </h2>
-                    <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                        How I Work
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed mb-8">
-                        I don&apos;t just write code; I own the problem. My approach is centered on
-                        creating measurable business value through robust engineering.
-                    </p>
-                    <div className="flex items-center gap-4 p-4 rounded-xl bg-primary/5 border border-primary/10">
-                        <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                            </svg>
-                        </div>
-                        <div>
-                            <p className="text-sm font-bold text-white">Full-Stack Ownership</p>
-                            <p className="text-xs text-muted-foreground">Frontend, Backend, and Cloud infra.</p>
-                        </div>
+        <section id="work" className="section-container border-t border-white/5 !max-w-6xl">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-20">
+                <div className="md:col-span-5">
+                    <div className="flex items-center gap-4 mb-6">
+                        <span className="h-[2px] w-12 bg-accent" />
+                        <h2 className="text-xs font-bold text-white uppercase tracking-[0.4em]">
+                            Philosophy
+                        </h2>
                     </div>
+
+                    <h3 className="text-4xl font-bold text-white tracking-tight mb-8">
+                        The Thinking <br /> Behind the Code
+                    </h3>
+
+                    <p className="text-muted-foreground text-lg font-light leading-relaxed">
+                        I don&apos;t just write code; I own the problem. My approach is centered on
+                        creating measurable business value through robust engineering and
+                        intentional system design.
+                    </p>
                 </div>
 
-                <div className="space-y-4">
+                <div className="md:col-span-7 space-y-12">
                     {howIWork.map((item, idx) => (
                         <div
                             key={idx}
-                            className="p-6 rounded-2xl bg-card/40 border border-white/5 hover:border-white/10 transition-colors"
+                            className="group flex gap-8"
                         >
-                            <h4 className="text-lg font-bold text-white mb-2">{item.title}</h4>
-                            <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                            <span className="text-3xl font-bold text-white/10 group-hover:text-accent/20 transition-colors">
+                                0{idx + 1}
+                            </span>
+                            <div>
+                                <h4 className="text-xl font-bold text-white mb-3 tracking-tight">
+                                    {item.title}
+                                </h4>
+                                <p className="text-base text-muted-foreground font-light leading-relaxed">
+                                    {item.description}
+                                </p>
+                            </div>
                         </div>
                     ))}
                 </div>

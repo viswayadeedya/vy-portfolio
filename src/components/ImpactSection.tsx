@@ -1,3 +1,5 @@
+'use client';
+
 import { impactStories, RoleView } from '@/lib/content';
 import ImpactStoryCard from './ImpactStoryCard';
 
@@ -7,21 +9,26 @@ interface ImpactSectionProps {
 
 export default function ImpactSection({ view }: ImpactSectionProps) {
     return (
-        <section id="impact" className="section-container">
-            <div className="flex flex-col items-center mb-16 text-center">
-                <h2 className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">
-                    Evidence of Impact
-                </h2>
-                <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                    3 Impact Stories
+        <section id="impact" className="section-container !max-w-6xl">
+            <div className="mb-20">
+                <div className="flex items-center gap-4 mb-6">
+                    <span className="h-[2px] w-12 bg-accent" />
+                    <h2 className="text-xs font-bold text-white uppercase tracking-[0.4em]">
+                        Evidence of Impact
+                    </h2>
+                </div>
+
+                <h3 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-8">
+                    Systems at Scale
                 </h3>
-                <p className="text-muted-foreground max-w-xl">
-                    Real-world outcomes delivered across fintech, enterprise, and AI domains.
-                    Toggle the "View as" filter above to see technical ownership from different perspectives.
+
+                <p className="text-muted-foreground text-lg max-w-2xl font-light leading-relaxed">
+                    Deep dives into technical decisions and their measurable outcomes. <br className="hidden md:block" />
+                    Toggle the lens above to reframe my involvement across the stack.
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="border-t border-white/10">
                 {impactStories.map((story) => (
                     <ImpactStoryCard key={story.id} story={story} view={view} />
                 ))}
