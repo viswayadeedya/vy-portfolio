@@ -41,8 +41,8 @@ export default function Hero({ view, setView }: HeroProps) {
                 </h1>
 
                 <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mb-12 font-light leading-relaxed">
-                    Full-stack engineer owning systems end-to-end <br className="hidden md:block" />
-                    across frontend, backend, and cloud.
+                    Full-stack engineer with 4+ years of experience building production <br className="hidden md:block" />
+                    systems in fintech and enterprise logistics.
                 </p>
 
                 {/* Role Lens Toggle */}
